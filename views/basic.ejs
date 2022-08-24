@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+    
+<p> selected Region: <%= regname  %> </p>
+    
+        
+<% usl.forEach( users=>{ %>
+
+    <p> selected State: <%= users.state %> </p>
+
+    <p> selected City: <%= users.city  %> </p>
+
+    <p>Githublink:  <%= users.githublink %> </p>
+
+<% }) %>
+
+    </body>
+</html>
