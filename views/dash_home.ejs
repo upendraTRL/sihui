@@ -20,31 +20,26 @@
 
   <!-- End layout styles -->
   <link rel="shortcut icon" href="assets/images/favicon.ico" />
+
+
+  <!-- Head -->
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+
+  <!-- d3 JavaScript-->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="../map/static/css/style.css">
+
 </head>
 
 <body>
   <div class="container-scroller">
-    <div class="row p-0 m-0 proBanner" id="proBanner">
-      <div class="col-md-12 p-0 m-0">
-        <div class="card-body card-body-padding d-flex align-items-center justify-content-between">
-          <div class="ps-lg-1">
-            <div class="d-flex align-items-center justify-content-between">
-              <p class="mb-0 font-weight-medium me-3 buy-now-text">Free 24/7 customer support, updates, and more with
-                this template!</p>
-              <a href="https://www.bootstrapdash.com/product/purple-bootstrap-admin-template/?utm_source=organic&utm_medium=banner&utm_campaign=buynow_demo"
-                target="_blank" class="btn me-2 buy-now-btn border-0">Get Pro</a>
-            </div>
-          </div>
-          <div class="d-flex align-items-center justify-content-between">
-            <a href="https://www.bootstrapdash.com/product/purple-bootstrap-admin-template/"><i
-                class="mdi mdi-home me-3 text-white"></i></a>
-            <button id="bannerClose" class="btn border-0 p-0">
-              <i class="mdi mdi-close text-white me-0"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -67,7 +62,7 @@
           </form>
         </div>
         <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item nav-profile dropdown">
+          <!-- <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown"
               aria-expanded="false">
               <div class="nav-profile-img">
@@ -85,7 +80,7 @@
               <a class="dropdown-item" href="#">
                 <i class="mdi mdi-logout me-2 text-primary"></i> Signout </a>
             </div>
-          </li>
+          </li> -->
           <li class="nav-item d-none d-lg-block full-screen-link">
             <a class="nav-link">
               <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
@@ -205,41 +200,28 @@
       <!-- partial:partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
-          <li class="nav-item nav-profile">
-            <a href="#" class="nav-link">
-              <div class="nav-profile-image">
-                <img src="assets/images/faces/face1.jpg" alt="profile">
-                <span class="login-status online"></span>
-                <!--change to offline or busy as needed-->
-              </div>
-              <div class="nav-profile-text d-flex flex-column">
-                <span class="font-weight-bold mb-2">David Grey. H</span>
-                <span class="text-secondary text-small">Project Manager</span>
-              </div>
-              <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
-            </a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="index.html">
               <span class="menu-title">Dashboard</span>
               <i class="mdi mdi-home menu-icon"></i>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-              aria-controls="ui-basic">
-              <span class="menu-title">Basic UI Elements</span>
-              <i class="menu-arrow"></i>
-              <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#newChart" aria-expanded="false"
+              aria-controls="ui-basic" method="post">
+              <span class="menu-title">
+                <b>Charts</b>
+              </span>
+              <input type="text" name="homireg" placeholder="2nd numm" id="ttid3ho" style="visibility: hidden;">
+              <i class="mdi mdi-chart-bar menu-icon"></i>
+              <script>
+                document.getElementById("ttid3ho").value = '<%usl.forEach( users=>{ %><%=users.reg_name%><%})%>';
+                console.log("homi inputbox = " + document.getElementById("ttid3ho").value);
+                console.log("homi direct = " + '<%usl.forEach(users=>{%><%=users.reg_name%><%})%>');
+              </script>
             </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link" href="pages/icons/mdi.html">
               <span class="menu-title">Icons</span>
               <i class="mdi mdi-contacts menu-icon"></i>
@@ -250,12 +232,14 @@
               <span class="menu-title">Forms</span>
               <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
 
-            <form action="/chartsjsp" class="nav-link" method="post">
+            <form action="/chartsjsp" class="nav-link" id="newChart" method="post">
               <!-- <a class="nav-link" href="/chartsjs"> -->
-              <button style="background-color: transparent; border: none;"> <span class="menu-title"><b>Charts</b>
+              <button style="background-color: transparent; border: none;">
+                <span class="menu-title">
+                  <b>Charts</b>
                   &emsp;
                   &emsp; &emsp; &emsp; &emsp; &emsp;
                   &emsp;</span>
@@ -275,16 +259,16 @@
 
             </form>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <form action="/tables" class="nav-link" method="post">
 
-              <!-- <a class="nav-link" href="pages/tables/basic-table.html"> -->
+              <!-- <a class="nav-link" href="pages/tables/basic-table.html"> --
               <button style="background-color: transparent; border: none;"> <span class="menu-title">
                   <span class="menu-title"><b>Tables</b></bTables></span> &emsp;
                   &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;
                   <i class="mdi mdi-table-large menu-icon"></i>
               </button>
-              <!-- </a> -->
+              <!-- </a> --
               <input type="text" name="homiregt" placeholder="2nd numm" id="ttid3hot" style="visibility: hidden;">
 
 
@@ -296,8 +280,8 @@
               </script>
 
             </form>
-          </li>
-          <li class="nav-item">
+          </li> -->
+          <!-- <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false"
               aria-controls="general-pages">
               <span class="menu-title">Sample Pages</span>
@@ -313,7 +297,8 @@
                 <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> 500 </a></li>
               </ul>
             </div>
-          </li>
+          </li> -->
+          
           <li class="nav-item sidebar-actions">
             <span class="nav-link">
               <div class="border-bottom">
@@ -350,6 +335,8 @@
               </ul>
             </nav>
           </div>
+
+
 
 
 
@@ -468,7 +455,189 @@
               letter-spacing: 1px;
             }
           </style>
-          <div class="courses-container">
+
+
+          <div class="row">
+            <div class="col-md-5 grid-margin stretch-card" style=" width: 58%;">
+              <div class="course">
+                <div class="course-preview">
+                  <h6 style="color: rgb(252, 235, 235);">label
+                  </h6>
+                  <br />
+
+                  <i style="font-size:65px;color: red;" class="fa">&#xf041;</i>
+                  <br />
+                  <br />
+
+                  <span> <i style="font-size:18px;margin-right: 35px;color: rgba(0, 229, 0, 0.884);"
+                      class="fa">&#xf015;</i>50%</span>
+
+                </div>
+                <div class="course-info"
+                  style="background-image: url('https://thumbs.dreamstime.com/b/maharashtra-state-india-zoomed-pattern-shape-its-capital-isolated-solid-background-distance-scale-region-preview-193798611.jpg');">
+                  <div class="progress-container">
+                    <!-- <div class="progress"></div>-->
+
+
+
+                    <link href="https://fonts.googleapis.com/css?family=Maven+Pro&display=swap" rel="stylesheet">
+                    <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+                    <style>
+                      #myprogress {
+                        width: 80%;
+                        height: 8px;
+                        background: grey;
+                        margin: auto;
+                      }
+
+                      #mybar {
+                        width: 1%;
+                        height: 8px;
+                        background: #48d18f;
+                        color: white;
+                        text-align: center;
+                      }
+                    </style>
+
+
+
+                    <div id="myprogress">
+                      <div id="mybar">
+                        <span id="incvalue">1%</span>
+                      </div>
+                    </div>
+
+
+                    <script>
+
+                      var elem = document.getElementById("mybar");
+                      var width = 1;
+                      var id = setInterval(frame, 10)
+
+                      function frame() {
+                        if (width >= 100) {
+                          clearInterval(id);
+                        } else {
+                          width++;
+                          elem.style.width = "80" + "%";
+                          document.getElementById("incvalue").innerHTML = "-";
+
+                        }
+                      }
+
+                    </script>
+                    <span class="progress-text" style="color: rgb(15, 14, 14);font-size: 12px">
+                      <b> 6/9 Challenges</span><b>
+                      </span>
+
+                  </div>
+                  <h6 style="color: rgb(0, 0, 0);">STATE:
+                    <% usl.forEach( users=>{ %> <%= users.state %>
+                        <% }) %>
+                  </h6>
+                  <br />
+
+                  <h6 style="opacity:0;">c</h6>
+                  <h2 style="color: black;"><b>REGION:
+
+                      <% usl.forEach( users=>{ %> <%= users.reg_name %>
+                          <% }) %>
+                            <b></h2><br />
+                  <span style="font-size: 14px;">Increased by 60%</span><span
+                    style="opacity: 0;">xnjn</span><span></span>
+
+                  <a href="http://192.168.200.250:8501" target="_blank"><button class="btn">Look more >></button></a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-5 grid-margin stretch-card" style=" float: right; margin-top: -17.8rem;">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Region</h4>
+                  <div id="whole">
+                    <section>
+                      <form class="forms-sample">
+                        <div class="form-group">
+                          <label for="inputState">State</label>
+                          <select class="form-control" id="inputState" style="color: black;">
+                            <option value=" SelectState">Select State</option>
+                            <option value="Andra Pradesh">Andra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madya Pradesh">Madya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Orissa">Orissa</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttaranchal">Uttaranchal</option>
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                            <option value="West Bengal">West Bengal</option>
+                            <option disabled style="background-color:#aaa; color:#fff">UNION Territories</option>
+                            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                            <option value="Chandigarh">Chandigarh</option>
+                            <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                            <option value="Daman and Diu">Daman and Diu</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Lakshadeep">Lakshadeep</option>
+                            <option value="Pondicherry">Pondicherry</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputCity1">City</label>
+                          <select class="form-control" id="inputDistrict" style="color: black;">
+                            <option value="">-- select one -- </option>
+                          </select>
+                        </div>
+
+                        <!-- <form class="forms-sample">
+                          <div class="form-group">
+                            <label for="exampleInputCity1">Region</label>
+                            <select class="form-control" id="exampleInputCity1" style="color: black;">
+                              <option value="Region">Select Region</option>
+                              <option value="#">#</option>
+                              <option value="#">#</option>
+                              <option value="#">#</option>
+                              <option value="#">#</option>
+                              <option value="#">#</option>
+                            </select>
+                          </div> -->
+
+                        <input id="submitID" type="button" value="Submit" class="btn btn-gradient-primary me-2"
+                          onclick="latilong()">
+                      </form>
+
+                    </section>
+                    <!-- <div id="map" ></div> -->
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <!-- <div class="courses-container" style="background-color: aqua;">
             <div class="course">
               <div class="course-preview">
                 <h6 style="color: rgb(252, 235, 235);">label
@@ -483,10 +652,10 @@
                     class="fa">&#xf015;</i>50%</span>
 
               </div>
-              <div class="course-info"
+              <!-- <div class="course-info"
                 style="background-image: url('https://thumbs.dreamstime.com/b/maharashtra-state-india-zoomed-pattern-shape-its-capital-isolated-solid-background-distance-scale-region-preview-193798611.jpg');">
                 <div class="progress-container">
-                  <!-- <div class="progress"></div>-->
+                  <!-- <div class="progress"></div>--
 
 
 
@@ -556,12 +725,26 @@
                           <b></h2><br />
                 <span style="font-size: 14px;">Increased by 60%</span><span style="opacity: 0;">xnjn</span><span></span>
 
-                <button class="btn">Look more >></button>
-              </div>
+                <a href="http://192.168.200.250:8501" target="_blank"><button class="btn">Look more >></button></a>
+              </div> --
             </div>
-          </div>
+
+
+
+          </div> -->
 
           <div class="row">
+
+            <div class="card">
+              <div class="card-body" style="height: 30rem;">
+                <h4 class="card-title">Map</h4>
+                <div id="mapid"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row" style="margin-top: 2rem;">
 
 
             <div class="col-md-4 stretch-card grid-margin">
@@ -916,6 +1099,8 @@
   </div>
   <!-- container-scroller -->
   <!-- plugins:js -->
+  <script src="../map/data.js"></script>
+
   <script src="assets/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
@@ -931,6 +1116,46 @@
   <script src="assets/js/dashboard.js"></script>
   <script src="assets/js/todolist.js"></script>
   <!-- End custom js for this page -->
+
+
+
+
+  <!-- Foot -->
+
+  <!-- Leaflet JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+
+
+  <!-- API key -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+    crossorigin="anonymous"></script>
+
+
+  <script type="text/javascript" src="../map/static/js/config.js"></script>
+
+  <!-- JavaScript -->
+  <script type="text/javascript" src="../map/static/js/challenge_logic.js"></script>
+
+
 </body>
 
 </html>

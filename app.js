@@ -20,6 +20,7 @@ app.use('/css', express.static('css'));
 app.use('/images', express.static('images'));
 
 app.use('/js', express.static('js'));
+app.use('/map', express.static('map'));
 
 
 
@@ -203,7 +204,7 @@ app.post("/chtotable", function (req, res) {
         res.render("tables", {
             regname: r11chhtotb,
             usl: users
-            
+
         });
 
     });
