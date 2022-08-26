@@ -143,13 +143,17 @@
     <meta name="keywords" content="earthquake,visualization,datavisualization,data,realtime">
 </head>
 
-<div id="contentframe1" style="position:relative; top: 0px; left: 50px;">
-    <svg id="svg" width="90%" height="360"></svg>
+
+<div id="contentframe1" style="position:relative; top: 0rem; left: 40rem;">
+    <svg id="svg" width="100%" height="360"></svg>
 </div>
 
-<div id="contentframe3" style="position:absolute; top: 500px; left: 50px;">
-    <label for="myList"><span>Heat Map of Earthquakes around the World </span>
-        <select id="myList" align="right">
+
+
+<div id="contentframe3" style="position:absolute; top: 500px; left: 45rem; margin-top: 10rem;">
+    <label for="myList" style="font-size: larger;"><span>Heat Map of Earthquakes around the
+            World </span>
+        <select id="myList" align="right" style="height: 50px; width: 160px; font-size: larger;">
             <option selected="">Select Time</option>
             <option value="yr1">Last One Hour</option>
             <option value="yr2">Last All Day</option>
@@ -161,7 +165,7 @@
     </label>
 
 
-    <div id="heatmap-canvas" style="width:550px; height:225px;top: 0px"></div>
+    <div id="heatmap-canvas" style="width:70rem; height:450px;top: 0px"></div>
     <script src="http://d3js.org/d3.v4.min.js"></script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
