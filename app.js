@@ -20,6 +20,7 @@ app.use('/css', express.static('css'));
 app.use('/images', express.static('images'));
 
 app.use('/js', express.static('js'));
+
 app.use('/map', express.static('map'));
 
 
@@ -57,7 +58,22 @@ app.get("/", function (req, res) {
     res.sendFile(__dirname + "/public/index.html");
 });
 
+app.post("/earthqq", function (req, res) {
 
+    //  res.send("jfffkmek");
+    var r11homi = String(req.body.homireg22);
+    //input box with github link
+
+    User.find({ "reg_name": r11homi }, function (err, users) {
+
+        res.render("world", {
+            regname: r11homi,
+            usl: users
+        });
+
+    });
+
+});
 
 app.post("/", function (req, res) {
 
