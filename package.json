@@ -1,11 +1,15 @@
 {
   "name": "purpleadmin-free-admin-template-master",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "nodemon server.js"
+    "start" : "node ./app.js"
   },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
   "author": "prayag",
   "license": "ISC",
   "dependencies": {
