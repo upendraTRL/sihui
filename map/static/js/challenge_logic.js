@@ -320,7 +320,8 @@ function latilong() {
         // console.log(data);
 
         if (data.preventions[i].region == nearby_calamities[0].city) {
-          
+          var precaution = document.getElementById('precaution1')
+          precaution.innerHTML = data.preventions[i].prevention;
         }
       }
     });
