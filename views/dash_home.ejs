@@ -43,9 +43,12 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="index.html">Visualization</a>
-        <a class="navbar-brand brand-logo-mini" href="index.html">Visualization</a>
+        <a class="navbar-brand brand-logo" href="../../index.html">
+          LegendBytes</a>
+        <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/images/logo-mini.svg"
+            alt="logo" /></a>
       </div>
+
       <div class="navbar-menu-wrapper d-flex align-items-stretch">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
           <span class="mdi mdi-menu"></span>
@@ -213,6 +216,23 @@
 
             </form>
           </li>
+
+          
+
+          <li class="nav-item">
+            <a class="nav-link" href="pages/forms/basic_elements.html">
+              <span class="menu-title">Flood Prediction</span>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="pages/forms/basic_elements.html">
+              <span class="menu-title">Earthquake 3D</span>
+              <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+            </a>
+          </li>
+
           <!-- <li class="nav-item">
             <form action="/tables" class="nav-link" method="post">
 
@@ -253,23 +273,7 @@
             </div>
           </li> -->
 
-          <li class="nav-item sidebar-actions">
-            <span class="nav-link">
-              <div class="border-bottom">
-                <h6 class="font-weight-normal mb-3">Projects</h6>
-              </div>
-              <!-- <button class="btn btn-block btn-lg btn-gradient-primary mt-4">+ Add a project</button> -->
-              <div class="mt-4">
-                <div class="border-bottom">
-                  <p class="text-secondary">Categories</p>
-                </div>
-                <ul class="gradient-bullet-list mt-4">
-                  <!-- <li>Free</li>
-                  <li>Pro</li> -->
-                </ul>
-              </div>
-            </span>
-          </li>
+          
         </ul>
       </nav>
       <!-- partial -->
@@ -280,139 +284,145 @@
               <span class="page-title-icon bg-gradient-primary text-white me-2">
                 <i class="mdi mdi-home"></i>
               </span> Dashboard
-            </h3>
-            <nav aria-label="breadcrumb">
-              <ul class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">
-                  <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-                </li>
-              </ul>
-            </nav>
-          </div>
+            </h3>          
+          </div>          
 
 
+          <div class="row">     
+             <!-- ------------------ Prayag Card Col-5 -------------------- -->
 
+              <!-- <div class="col-md-7 grid-margin stretch-card">
 
+                <div class="card">
+                  <div class="card-body" style="background-image: url('https://thumbs.dreamstime.com/b/maharashtra-state-india-zoomed-pattern-shape-its-capital-isolated-solid-background-distance-scale-region-preview-193798611.jpg');">
+                    
 
+                      <div class="splite_20" style="background-color: aqua; width: 7rem; ">
+                        <h1>Helooo</h1>
+                      </div>
 
+                    
+                  </div>
+                </div>
 
+              </div> -->
+         
+            <!-- ----------- Prayag Card  Start ---------------------- -->
 
-          <style>
-            @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+            <style>
+              @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+  
+              * {
+                box-sizing: border-box;
+              }
+  
+  
+              /* body {
+                background-image: linear-gradient(45deg, #7175da, #9790F2);
+                font-family: 'Muli', sans-serif;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                min-height: 100vh;
+                margin: 0;
+              }
+   */
+  
+  
+              .course {
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+                display: flex;
+                max-width: 100%;
+                margin: 20px;
+                overflow: hidden;
+                width: 700px;
+              }
+  
+              .course h6 {
+                opacity: 0.6;
+                margin: 0;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+              }
+  
+              .course h2 {
+                letter-spacing: 1px;
+                margin: 10px 0;
+              }
+  
+              .course-preview {
+                background-color: #2A265F;
+                color: #fff;
+                padding: 30px;
+                max-width: 250px;
+              }
+  
+              .course-preview a {
+                color: #fff;
+                display: inline-block;
+                font-size: 12px;
+                opacity: 0.6;
+                margin-top: 30px;
+                text-decoration: none;
+              }
+  
+              .course-info {
+                padding: 30px;
+                position: relative;
+                width: 100%;
+              }
+  
+              .progress-container {
+                position: absolute;
+                top: 30px;
+                right: 30px;
+                text-align: right;
+                width: 150px;
+              }
+  
+              .progress {
+                background-color: #ddd;
+                border-radius: 3px;
+                height: 5px;
+                width: 100%;
+              }
+  
+              .progress::after {
+                border-radius: 3px;
+                background-color: #2A265F;
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 5px;
+                width: 66%;
+              }
+  
+              .progress-text {
+                font-size: 10px;
+                opacity: 0.6;
+                letter-spacing: 1px;
+              }
+  
+              .btn {
+                background-color: #2A265F;
+                border: 0;
+                border-radius: 50px;
+                box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+                color: #fff;
+                font-size: 16px;
+                padding: 12px 25px;
+                position: absolute;
+                bottom: 30px;
+                right: 30px;
+                letter-spacing: 1px;
+              }
+            </style>
 
-            * {
-              box-sizing: border-box;
-            }
-
-
-            body {
-              background-image: linear-gradient(45deg, #7175da, #9790F2);
-              font-family: 'Muli', sans-serif;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              flex-direction: column;
-              min-height: 100vh;
-              margin: 0;
-            }
-
-
-
-            .course {
-              background-color: #fff;
-              border-radius: 10px;
-              box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-              display: flex;
-              max-width: 100%;
-              margin: 20px;
-              overflow: hidden;
-              width: 700px;
-            }
-
-            .course h6 {
-              opacity: 0.6;
-              margin: 0;
-              letter-spacing: 1px;
-              text-transform: uppercase;
-            }
-
-            .course h2 {
-              letter-spacing: 1px;
-              margin: 10px 0;
-            }
-
-            .course-preview {
-              background-color: #2A265F;
-              color: #fff;
-              padding: 30px;
-              max-width: 250px;
-            }
-
-            .course-preview a {
-              color: #fff;
-              display: inline-block;
-              font-size: 12px;
-              opacity: 0.6;
-              margin-top: 30px;
-              text-decoration: none;
-            }
-
-            .course-info {
-              padding: 30px;
-              position: relative;
-              width: 100%;
-            }
-
-            .progress-container {
-              position: absolute;
-              top: 30px;
-              right: 30px;
-              text-align: right;
-              width: 150px;
-            }
-
-            .progress {
-              background-color: #ddd;
-              border-radius: 3px;
-              height: 5px;
-              width: 100%;
-            }
-
-            .progress::after {
-              border-radius: 3px;
-              background-color: #2A265F;
-              content: '';
-              position: absolute;
-              top: 0;
-              left: 0;
-              height: 5px;
-              width: 66%;
-            }
-
-            .progress-text {
-              font-size: 10px;
-              opacity: 0.6;
-              letter-spacing: 1px;
-            }
-
-            .btn {
-              background-color: #2A265F;
-              border: 0;
-              border-radius: 50px;
-              box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
-              color: #fff;
-              font-size: 16px;
-              padding: 12px 25px;
-              position: absolute;
-              bottom: 30px;
-              right: 30px;
-              letter-spacing: 1px;
-            }
-          </style>
-
-
-          <div class="row">
-            <div class="col-md-5 grid-margin stretch-card" style=" width: 58%;">
+            <div class="col-md-5 grid-margin stretch-card" style=" width: 58%; height: 20rem;">
               <div class="course">
                 <div class="course-preview">
 
@@ -490,7 +500,7 @@
                           clearInterval(id);
                         } else {
                           width++;
-                          elem.style.width = "80" + "%";
+                          elem.style.width = '<% usl.forEach( users=>{ %> <%= users.chg_data %>  <% }) %>';
                           document.getElementById("incvalue").innerHTML = "-";
 
                         }
@@ -521,10 +531,17 @@
                 </div>
               </div>
             </div>
+            <!-- ----------- Prayag Card  End ---------------------- -->
 
-            <div class="col-md-5 grid-margin stretch-card" style=" float: right; margin-top: -19rem;">
-              <div class="card">
-                <div class="card-body">
+
+         
+            
+
+        <!-- ------------ Form -------------------------------- -->
+
+            <div class="col-md-5 grid-margin stretch-card" style="float:right; margin-top: -21rem;">
+              <div class="card" style="border-radius: 0.7rem;">
+                <div class="card-body" >
                   <h4 class="card-title">Region</h4>
                   <div id="whole">
                     <section>
@@ -604,106 +621,10 @@
                 </div>
               </div>
             </div>
+
           </div>
 
-
-
-          <!-- <div class="courses-container" style="background-color: aqua;">
-            <div class="course">
-              <div class="course-preview">
-                <h6 style="color: rgb(252, 235, 235);">label
-                </h6>
-                <br />
-
-                <i style="font-size:65px;color: red;" class="fa">&#xf041;</i>
-                <br />
-                <br />
-
-                <span> <i style="font-size:18px;margin-right: 35px;color: rgba(0, 229, 0, 0.884);"
-                    class="fa">&#xf015;</i>50%</span>
-
-              </div>
-              <!-- <div class="course-info"
-                style="background-image: url('https://thumbs.dreamstime.com/b/maharashtra-state-india-zoomed-pattern-shape-its-capital-isolated-solid-background-distance-scale-region-preview-193798611.jpg');">
-                <div class="progress-container">
-                  <!-- <div class="progress"></div>--
-
-
-
-                  <link href="https://fonts.googleapis.com/css?family=Maven+Pro&display=swap" rel="stylesheet">
-                  <link rel="stylesheet"
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-                  <style>
-                    #myprogress {
-                      width: 80%;
-                      height: 8px;
-                      background: grey;
-                      margin: auto;
-                    }
-
-                    #mybar {
-                      width: 1%;
-                      height: 8px;
-                      background: #48d18f;
-                      color: white;
-                      text-align: center;
-                    }
-                  </style>
-
-
-
-                  <div id="myprogress">
-                    <div id="mybar">
-                      <span id="incvalue">1%</span>
-                    </div>
-                  </div>
-
-
-                  <script>
-
-                    var elem = document.getElementById("mybar");
-                    var width = 1;
-                    var id = setInterval(frame, 10)
-
-                    function frame() {
-                      if (width >= 100) {
-                        clearInterval(id);
-                      } else {
-                        width++;
-                        elem.style.width = "80" + "%";
-                        document.getElementById("incvalue").innerHTML = "-";
-
-                      }
-                    }
-
-                  </script>
-                  <span class="progress-text" style="color: rgb(15, 14, 14);font-size: 12px">
-                    <b> 6/9 Challenges</span><b>
-                    </span>
-
-                </div>
-                <h6 style="color: rgb(0, 0, 0);">STATE:
-                  <% usl.forEach( users=>{ %> <%= users.state %>
-                      <% }) %>
-                </h6>
-                <br />
-
-                <h6 style="opacity:0;">c</h6>
-                <h2 style="color: black;"><b>REGION:
-
-                    <% usl.forEach( users=>{ %> <%= users.reg_name %>
-                        <% }) %>
-                          <b></h2><br />
-                <span style="font-size: 14px;">Increased by 60%</span><span style="opacity: 0;">xnjn</span><span></span>
-
-                <a href="http://192.168.200.250:8501" target="_blank"><button class="btn">Look more >></button></a>
-              </div> --
-            </div>
-
-
-
-          </div> -->
-
+<!-- ------------------------- Map ------------------------------------ -->
           <div class="row">
 
             <div class="card">
@@ -715,7 +636,9 @@
 
           </div>
 
-          <div class="row" style="margin-top: 2rem;">
+          <!-- -------------------- Two Buttons ---------------------------------- -->
+
+          <!-- <div class="row" style="margin-top: 2rem;">
 
 
             <div class="col-md-6 stretch-card grid-margin">
@@ -732,6 +655,7 @@
                 </a>
               </div>
             </div>
+
             <div class="col-md-6 stretch-card grid-margin">
               <div class="card bg-gradient-info card-img-holder text-white">
                 <a href="http://192.168.200.250:8502" style="color: black; text-decoration: none;">
@@ -745,19 +669,7 @@
               </div>
             </div>
 
-            <div class="col-md-4 stretch-card grid-margin">
-                <div class="card bg-gradient-success card-img-holder text-white">
-                  <div class="card-body">
-                    <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
-                    <h4 class="font-weight-normal mb-3">Visitors Online <i
-                        class="mdi mdi-diamond mdi-24px float-right"></i>
-                    </h4>
-                    <h2 class="mb-5">95,5741</h2>
-                    <h6 class="card-text">Increased by 5%</h6>
-                  </div>
-                </div>
-              </div>-->
-          </div>
+          </div> -->
 
 
 
@@ -794,7 +706,38 @@
               </div>
             </div>
           </div> -->
+          
+          <div class="row">
 
+            <!-- -------First---------- -->
+
+            <div class="col-md-6 grid-margin stretch-card" style="margin-top: 2.5rem;">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Sources</h4>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 grid-margin stretch-card" style="margin-top: 2.5rem;">
+              <div class="card">
+                <div class="card-body">
+                  <div class="clearfix">
+                    <h4 class="card-title float-left">Region Statistics</h4>
+                    
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- ------------Second----------- -->
+
+            
+           </div> 
+         
+          
           <!-- --------Chart end--------------- -->
 
           <div class="row">
@@ -812,7 +755,7 @@
                       <div class="card">
                         <div class="card-body">
                           <h4 class="card-title">Sources</h4>
-                          <video autoplay="autoplay" loop="loop" muted="" width="100%" height="auto" style="">
+                          <video autoplay="autoplay" loop="loop" muted="" width="100%" height="auto">
                             <source
                               src="https://acropolis-wp-content-uploads.s3.us-west-1.amazonaws.com/earth-resistant.mp4"
                               type="video/mp4">

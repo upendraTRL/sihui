@@ -14,7 +14,10 @@ let userSchema = new mongoose.Schema({
     githublink: String,
     reg_color: String,
     reg_label: String,
-    reg_data1: String
+    reg_data1: String,
+    lat_m: String,
+    long_m: String,
+    chg_data: String
 
 })
 

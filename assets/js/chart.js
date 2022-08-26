@@ -454,102 +454,134 @@ $(function () {
   }
   // Get context with jQuery - using jQuery's .get() method.
 
-  
-  
-      // render init block
-     
+
+
+  // render init block
+
 
 
 
 
   if ($("#barChart").length) {
 
-  
+
     updatechart();
 
     function updatechart() {
-    async function fetchJSON(){
-      const url = document.getElementById("bar-chart_id").value;
-      console.log("url var =="+url);
-    // const url = 'https://raw.githubusercontent.com/Mrprayag077/SIH_proj/main/pp.json';
-    console.log("url = "+url);
-    const response = await fetch(url);
-    
-    const datapoints = await response.json();
-    console.log(datapoints);
-    return datapoints;
+      async function fetchJSON() {
+        const url = document.getElementById("bar-chart_id").value;
+        console.log("url var ==" + url);
+        // const url = 'https://raw.githubusercontent.com/Mrprayag077/SIH_proj/main/pp.json';
+        console.log("url = " + url);
+        const response = await fetch(url);
+
+        const datapoints = await response.json();
+        console.log(datapoints);
+        return datapoints;
+      };
+
+
+      fetchJSON().then(datapoints => {
+        const year = datapoints.ppr[0].pp1pro.map(function (index) {
+          return index.year;
+        });
+
+        console.log(year);
+        barChart.config.data.labels = year;
+        barChart.update();
+
+      });
+
+
+
+      fetchJSON().then(datapoints => {
+        const prop = datapoints.ppr[0].pp1pro.map(function (index) {
+          return index.prop;
+        });
+
+        console.log(prop);
+        barChart.config.data.datasets[0].data = prop;
+        barChart.update();
+
+      });
+
+
     };
-    
-    
-    fetchJSON().then(datapoints =>{
-    const year = datapoints.ppr[0].pp1.map(function(index) {
-     return index.year;
-    });
-    
-    console.log(year);
-    barChart.config.data.labels = year;
-    barChart.update();
-    
-    });
-    
-  
-    
-    fetchJSON().then(datapoints =>{
-    const value = datapoints.ppr[0].pp1.map(function(index) {
-     return index.value;
-    });
-    
-    console.log(value);
-    barChart.config.data.datasets[0].data = value;
-    barChart.update();
-    
-    });
-    
-    
+
+    // setup 
+    const data1 = {
+      labels: ['prayag', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [{
+        label: '',
+        data: [18, 12, 6, 9, 12, 3, 9],
+        backgroundColor: [
+          'rgba(255, 26, 104, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(0, 0, 0, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 26, 104, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(0, 0, 0, 1)'
+        ],
+        borderWidth: 1
+      }]
     };
-    
-        // setup 
-        const data1 = {
-          labels: ['prayag', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          datasets: [{
-            label: 'Weekly Sales',
-            data: [18, 12, 6, 9, 12, 3, 9],
-            backgroundColor: [
-              'rgba(255, 26, 104, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(0, 0, 0, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 26, 104, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-              'rgba(0, 0, 0, 1)'
-            ],
-            borderWidth: 1
-          }]
-        };
-      
-        // config 
-        const config = {
-          type: 'bar',
-          data: data1,
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
+
+    // config 
+    const config = {
+      type: 'bar',
+      data: data1,
+      options: {
+        scales: {
+          xAxes: [{
+
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Year'
+            },
+            ticks: {
+              beginAtZero: true,
+
+
             }
-          }
-        };
-  
-  
+
+          }],
+          yAxes: [{
+            display: true,
+            ticks: {
+              beginAtZero: true,
+              steps: 40,
+              stepValue: 5,
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Property'
+            }
+          }]
+        },
+        title: {
+          display: true,
+          text: 'YEAR VS PROPERTY LOSS'
+        },
+        legend: {
+          display: false
+
+        }
+
+      }
+    };
+
+
     var barChartCanvas = $("#barChart").get(0).getContext("2d");
     // This will get the first returned node in the jQuery collection.
     // var barChart = new Chart(barChartCanvas, {
@@ -558,7 +590,7 @@ $(function () {
     //   options: options
     // });
 
-    const barChart = new Chart(barChartCanvas,config
+    const barChart = new Chart(barChartCanvas, config
     );
   }
 
@@ -578,78 +610,129 @@ $(function () {
     updatechartl();
 
     function updatechartl() {
-    async function fetchJSONline(){
-      const urlline = document.getElementById("bar-chart_id").value;
-      console.log("url var lineeee =="+urlline);
-    // const url = 'https://raw.githubusercontent.com/Mrprayag077/SIH_proj/main/pp.json';
-    const responseline = await fetch(urlline);
-    
-    const datapointsline = await responseline.json();
-    console.log(datapointsline);
-    return datapointsline;
+      async function fetchJSONline() {
+        const urlline = document.getElementById("bar-chart_id").value;
+        console.log("url var lineeee ==" + urlline);
+        // const url = 'https://raw.githubusercontent.com/Mrprayag077/SIH_proj/main/pp.json';
+        const responseline = await fetch(urlline);
+
+        const datapointsline = await responseline.json();
+        console.log(datapointsline);
+        return datapointsline;
+      };
+
+
+      fetchJSONline().then(datapointsline => {
+        const yearline = datapointsline.ppr[0].pp1v.map(function (index) {
+          return index.year;
+        });
+
+        console.log(yearline);
+        lineChart.config.data.labels = yearline;
+        lineChart.update();
+
+      });
+
+
+
+      fetchJSONline().then(datapointsline => {
+        const valueline = datapointsline.ppr[0].pp1d.map(function (index) {
+          return index.deaths;
+        });
+
+        console.log(valueline);
+        lineChart.config.data.datasets[0].data = valueline;
+        lineChart.update();
+
+      });
+
+
     };
-    
-    
-    fetchJSONline().then(datapointsline =>{
-    const yearline = datapointsline.ppr[0].pp1.map(function(index) {
-     return index.year;
-    });
-    
-    console.log(yearline);
-    lineChart.config.data.labels = yearline;
-    lineChart.update();
-    
-    });
-    
-  
-    
-    fetchJSONline().then(datapointsline =>{
-    const valueline = datapointsline.ppr[0].pp1.map(function(index) {
-     return index.value;
-    });
-    
-    console.log(valueline);
-    lineChart.config.data.datasets[0].data = valueline;
-    lineChart.update();
-    
-    });
-    
-    
+
+    // setup 
+    const dataline = {
+      labels: ['prayag', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [{
+        label: '',
+        data: [18, 12, 6, 9, 12, 3, 9],
+        backgroundColor: [
+          'rgba(255, 26, 104, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(0, 0, 0, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 26, 104, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(0, 0, 0, 1)'
+        ],
+        borderWidth: 1
+      }]
     };
-    
-        // setup 
-        const dataline = {
-          labels: ['prayag', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          datasets: [{
-            label: 'Weekly Sales',
-            data: [18, 12, 6, 9, 12, 3, 9],
-            backgroundColor: [
-              'rgba(255, 26, 104, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(0, 0, 0, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 26, 104, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-              'rgba(0, 0, 0, 1)'
-            ],
-            borderWidth: 1
+
+    // config 
+    const configline = {
+      type: 'line',
+      data: dataline,
+      options: {
+        // scales: {
+        //   y: {
+        //     beginAtZero: true
+        //   }
+        // }
+
+        responsive: true,
+        legend: {
+          display: false
+
+        },
+        hover: {
+          mode: 'label'
+        },
+        scales: {
+          xAxes: [{
+
+            display: true,
+            scaleLabel: {
+              display: true,
+              labelString: 'Year'
+            },
+            ticks: {
+              beginAtZero: true,
+
+
+            }
+
+          }],
+          yAxes: [{
+            display: true,
+            ticks: {
+              beginAtZero: true,
+              steps: 40,
+              stepValue: 5,
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Destruction'
+            }
           }]
-        };
-      
-        // config 
-        const configline = {
-          type: 'line',
-          data: dataline  
-        };
+        },
+        title: {
+          display: true,
+          text: 'YEAR VS DEATHS'
+        }
+      }
+
+
+
+    };
 
 
     var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
@@ -659,11 +742,11 @@ $(function () {
     //   options: options
     // });
 
-    const lineChart = new Chart(lineChartCanvas,configline
-      );
-  
-  
-  
+    const lineChart = new Chart(lineChartCanvas, configline
+    );
+
+
+
   }
 
   if ($("#lineChartDark").length) {
@@ -696,82 +779,95 @@ $(function () {
   }
 
   if ($("#doughnutChart").length) {
-    
+
     updatechartdonut();
 
     function updatechartdonut() {
-    async function fetchJSONdonut(){
-      const urldonut = document.getElementById("bar-chart_id").value;
-      console.log("url donut =="+urldonut);
-    // const url = 'https://raw.githubusercontent.com/Mrprayag077/SIH_proj/main/pp.json';
-    const responsedonut = await fetch(urldonut);
-    
-    const datapointsdonut = await responsedonut.json();
-    console.log(datapointsdonut);
-    return datapointsdonut;
+      async function fetchJSONdonut() {
+        const urldonut = document.getElementById("bar-chart_id").value;
+        console.log("url donut ==" + urldonut);
+        // const url = 'https://raw.githubusercontent.com/Mrprayag077/SIH_proj/main/pp.json';
+        const responsedonut = await fetch(urldonut);
+
+        const datapointsdonut = await responsedonut.json();
+        console.log(datapointsdonut);
+        return datapointsdonut;
+      };
+
+
+      fetchJSONdonut().then(datapointsdonut => {
+        const yeardonut = datapointsdonut.ppr[0].pp1d.map(function (index) {
+          return index.year;
+        });
+
+        console.log(yeardonut);
+        doughnutChart.config.data.labels = yeardonut;
+        doughnutChart.update();
+
+      });
+
+
+
+      fetchJSONdonut().then(datapointsdonut => {
+        const valuedonut = datapointsdonut.ppr[0].pp1d.map(function (index) {
+          return index.deaths;
+        });
+
+        console.log(valuedonut);
+        doughnutChart.config.data.datasets[0].data = valuedonut;
+        doughnutChart.update();
+
+      });
+
+
     };
-    
-    
-    fetchJSONdonut().then(datapointsdonut =>{
-    const yeardonut = datapointsdonut.ppr[0].pp1.map(function(index) {
-     return index.year;
-    });
-    
-    console.log(yeardonut);
-    doughnutChart.config.data.labels = yeardonut;
-    doughnutChart.update();
-    
-    });
-    
-  
-    
-    fetchJSONdonut().then(datapointsdonut =>{
-    const valuedonut = datapointsdonut.ppr[0].pp1.map(function(index) {
-     return index.value;
-    });
-    
-    console.log(valuedonut);
-    doughnutChart.config.data.datasets[0].data = valuedonut;
-    doughnutChart.update();
-    
-    });
-    
-    
+
+    // setup 
+    const datadonut = {
+      labels: ['prayag', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [{
+        label: 'Year vs Destruction',
+        data: [18, 12, 6, 9, 12, 3, 9],
+        backgroundColor: [
+          'rgba(255, 26, 104, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(0, 0, 0, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 26, 104, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(0, 0, 0, 1)'
+        ],
+        borderWidth: 2,
+        hoverOffset: 4,
+        cutout: '90%'
+      }]
     };
-    
-        // setup 
-        const datadonut = {
-          labels: ['prayag', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          datasets: [{
-            label: 'Weekly Sales',
-            data: [18, 12, 6, 9, 12, 3, 9],
-            backgroundColor: [
-              'rgba(255, 26, 104, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(0, 0, 0, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 26, 104, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-              'rgba(0, 0, 0, 1)'
-            ],
-            borderWidth: 1
-          }]
-        };
-        
-        // config 
-        const configdonut = {
-          type: 'doughnut',
-          data: datadonut
-        };
+
+    // config 
+    const configdonut = {
+      type: 'doughnut',
+      data: datadonut,
+      options: {
+        legend: {
+          display: true,
+
+        },
+        title: {
+          display: true,
+          text: 'YEAR VS DEATHS'
+        }
+      }
+
+    };
 
     var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
     // var doughnutChart = new Chart(doughnutChartCanvas, {
@@ -779,91 +875,97 @@ $(function () {
     //   data: doughnutPieData,
     //   options: doughnutPieOptions
     // });
-    const doughnutChart = new Chart (doughnutChartCanvas, configdonut
-      );
-  
+    const doughnutChart = new Chart(doughnutChartCanvas, configdonut
+    );
+
   }
 
   if ($("#pieChart").length) {
-   
-   
-  
+
+
+
     updatechartpiee();
 
     function updatechartpiee() {
-    async function fetchJSONpiee(){
-      const urlpiee = document.getElementById("bar-chart_id").value;
-      console.log("url piee  =="+urlpiee); 
-    // const url = 'https://raw.githubusercontent.com/Mrprayag077/SIH_proj/main/pp.json';
-    const responsepiee = await fetch(urlpiee);
-    
-    const datapointspiee = await responsepiee.json();
-    console.log(datapointspiee);
-    return datapointspiee;
+      async function fetchJSONpiee() {
+        const urlpiee = document.getElementById("bar-chart_id").value;
+        console.log("url piee  ==" + urlpiee);
+        // const url = 'https://raw.githubusercontent.com/Mrprayag077/SIH_proj/main/pp.json';
+        const responsepiee = await fetch(urlpiee);
+
+        const datapointspiee = await responsepiee.json();
+        console.log(datapointspiee);
+        return datapointspiee;
+      };
+
+
+      fetchJSONpiee().then(datapointspiee => {
+        const yearpiee = datapointspiee.ppr[0].pp1pro.map(function (index) {
+          return index.year;
+        });
+
+        console.log(yearpiee);
+        pieChart.config.data.labels = yearpiee;
+        pieChart.update();
+
+      });
+
+
+
+      fetchJSONpiee().then(datapointspiee => {
+        const valuepiee = datapointspiee.ppr[0].pp1pro.map(function (index) {
+          return index.prop;
+        });
+
+        console.log(valuepiee);
+        pieChart.config.data.datasets[0].data = valuepiee;
+        pieChart.update();
+
+      });
+
+
     };
-    
-    
-    fetchJSONpiee().then(datapointspiee =>{
-    const yearpiee = datapointspiee.ppr[0].pp1.map(function(index) {
-     return index.year;
-    });
-    
-    console.log(yearpiee);
-    pieChart.config.data.labels = yearpiee;
-    pieChart.update();
-    
-    });
-    
-  
-    
-    fetchJSONpiee().then(datapointspiee =>{
-    const valuepiee = datapointspiee.ppr[0].pp1.map(function(index) {
-     return index.value;
-    });
-    
-    console.log(valuepiee);
-    pieChart.config.data.datasets[0].data = valuepiee;
-    pieChart.update();
-    
-    });
-    
-    
+
+    // setup 
+    const datapiee = {
+      labels: ['prayag', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [{
+        label: '',
+        data: [18, 12, 6, 9, 12, 3, 9],
+        backgroundColor: [
+          'rgba(255, 26, 104, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(0, 0, 0, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 26, 104, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(0, 0, 0, 1)'
+        ],
+        borderWidth: 3
+      }]
     };
-    
-        // setup 
-        const datapiee = {
-          labels: ['prayag', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          datasets: [{
-            label: 'Weekly Sales',
-            data: [18, 12, 6, 9, 12, 3, 9],
-            backgroundColor: [
-              'rgba(255, 26, 104, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(0, 0, 0, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 26, 104, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-              'rgba(0, 0, 0, 1)'
-            ],
-            borderWidth: 1
-          }]
-        };
-      
-        // config 
-        const configpiee = {
-          type: 'pie',
-          data: datapiee
-        };
-  
+
+    // config 
+    const configpiee = {
+      type: 'pie',
+      data: datapiee,
+      options: {
+        title: {
+          display: true,
+          text: 'YEAR VS PROPERTY'
+        }
+      }
+    };
+
 
     var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
     // var pieChart = new Chart(pieChartCanvas, {
@@ -871,8 +973,8 @@ $(function () {
     //   data: doughnutPieData,
     //   options: doughnutPieOptions
     // });
-    const pieChart = new Chart (pieChartCanvas, configpiee
-      );
+    const pieChart = new Chart(pieChartCanvas, configpiee
+    );
 
   }
 
@@ -883,77 +985,88 @@ $(function () {
     updatechartareao();
 
     function updatechartareao() {
-    async function fetchJSONareao(){
-      const urlareao = document.getElementById("bar-chart_id").value;
-      console.log("url donut =="+urlareao);
-    // const url = 'https://raw.githubusercontent.com/Mrprayag077/SIH_proj/main/pp.json';
-    const responseareao = await fetch(urlareao);
-    
-    const datapointsareao = await responseareao.json();
-    console.log(datapointsareao);
-    return datapointsareao;
+      async function fetchJSONareao() {
+        const urlareao = document.getElementById("bar-chart_id").value;
+        console.log("url donut ==" + urlareao);
+        // const url = 'https://raw.githubusercontent.com/Mrprayag077/SIH_proj/main/pp.json';
+        const responseareao = await fetch(urlareao);
+
+        const datapointsareao = await responseareao.json();
+        console.log(datapointsareao);
+        return datapointsareao;
+      };
+
+
+      fetchJSONareao().then(datapointsareao => {
+        const yearareao = datapointsareao.ppr[0].pp1v.map(function (index) {
+          return index.year;
+        });
+
+        console.log(yearareao);
+        areaChart.config.data.labels = yearareao;
+        areaChart.update();
+
+      });
+
+
+      fetchJSONareao().then(datapointsareao => {
+        const valueareao = datapointsareao.ppr[0].pp1v.map(function (index) {
+          return index.values;
+        });
+
+        console.log(valueareao);
+        areaChart.config.data.datasets[0].data = valueareao;
+        areaChart.update();
+
+      });
+
+
     };
-    
-    
-    fetchJSONareao().then(datapointsareao =>{
-    const yearareao = datapointsareao.ppr[0].pp1.map(function(index) {
-     return index.year;
-    });
-    
-    console.log(yearareao);
-    areaChart.config.data.labels = yearareao;
-    areaChart.update();
-    
-    });
-    
-    
-    fetchJSONareao().then(datapointsareao =>{
-    const valueareao = datapointsareao.ppr[0].pp1.map(function(index) {
-     return index.value;
-    });
-    
-    console.log(valueareao);
-    areaChart.config.data.datasets[0].data = valueareao;
-    areaChart.update();
-    
-    });
-    
-    
+
+    // setup 
+    const dataareao = {
+      labels: ['prayag', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [{
+        label: '',
+        data: [18, 12, 6, 9, 12, 3, 9],
+        backgroundColor: [
+          'rgba(255, 26, 104, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(0, 0, 0, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 26, 104, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(0, 0, 0, 1)'
+        ],
+        borderWidth: 2.5
+      }]
     };
-    
-        // setup 
-        const dataareao = {
-          labels: ['prayag', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          datasets: [{
-            label: 'Weekly Sales',
-            data: [18, 12, 6, 9, 12, 3, 9],
-            backgroundColor: [
-              'rgba(255, 26, 104, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(0, 0, 0, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 26, 104, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-              'rgba(0, 0, 0, 1)'
-            ],
-            borderWidth: 1
-          }]
-        };
-        
-        // config 
-        const configareao = {
-          type: 'polarArea',
-          data: dataareao
-        };  
+
+    // config 
+    const configareao = {
+      type: 'polarArea',
+      data: dataareao,
+      options: {
+        legend: {
+          display: true,
+
+        },
+        title: {
+          display: true,
+          text: 'YEAR VS DESTRUCTION'
+        }
+      }
+
+    };
 
     var areaChartCanvas = $("#areaChart").get(0).getContext("2d");
     // var areaChart = new Chart(areaChartCanvas, {
@@ -963,8 +1076,8 @@ $(function () {
     // });
 
 
-    const areaChart = new Chart(areaChartCanvas,configareao
-      )
+    const areaChart = new Chart(areaChartCanvas, configareao
+    )
   }
 
   if ($("#areaChartDark").length) {
@@ -977,81 +1090,88 @@ $(function () {
   }
 
   if ($("#scatterChart").length) {
-    
+
     updatechartrdr();
 
     function updatechartrdr() {
-    async function fetchJSONrdr(){
-      const urlrdr = document.getElementById("bar-chart_id").value;
-      console.log("url donut =="+urlrdr);
-    // const url = 'https://raw.githubusercontent.com/Mrprayag077/SIH_proj/main/pp.json';
-    const responserdr = await fetch(urlrdr);
-    
-    const datapointsrdr = await responserdr.json();
-    console.log(datapointsrdr);
-    return datapointsrdr;
+      async function fetchJSONrdr() {
+        const urlrdr = document.getElementById("bar-chart_id").value;
+        console.log("url donut ==" + urlrdr);
+        // const url = 'https://raw.githubusercontent.com/Mrprayag077/SIH_proj/main/pp.json';
+        const responserdr = await fetch(urlrdr);
+
+        const datapointsrdr = await responserdr.json();
+        console.log(datapointsrdr);
+        return datapointsrdr;
+      };
+
+
+      fetchJSONrdr().then(datapointsrdr => {
+        const yearrdr = datapointsrdr.ppr[0].pp1radar.map(function (index) {
+          return index.type;
+        });
+
+        console.log(yearrdr);
+        scatterChart.config.data.labels = yearrdr;
+        scatterChart.update();
+
+      });
+
+
+      fetchJSONrdr().then(datapointsrdr => {
+        const valuerdr = datapointsrdr.ppr[0].pp1radar.map(function (index) {
+          return index.values;
+        });
+
+        console.log(valuerdr);
+        scatterChart.config.data.datasets[0].data = valuerdr;
+        scatterChart.update();
+
+      });
+
+
     };
-    
-    
-    fetchJSONrdr().then(datapointsrdr =>{
-    const yearrdr = datapointsrdr.ppr[0].pp1.map(function(index) {
-     return index.year;
-    });
-    
-    console.log(yearrdr);
-    scatterChart.config.data.labels = yearrdr;
-    scatterChart.update();
-    
-    });
-    
-    
-    fetchJSONrdr().then(datapointsrdr =>{
-    const valuerdr = datapointsrdr.ppr[0].pp1.map(function(index) {
-     return index.value;
-    });
-    
-    console.log(valuerdr);
-    scatterChart.config.data.datasets[0].data = valuerdr;
-    scatterChart.update();
-    
-    });
-    
-    
+
+    // setup 
+    const datardr = {
+      labels: ['prayag', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      datasets: [{
+        label: '',
+        data: [18, 12, 6, 9, 12, 3, 9],
+        backgroundColor: [
+          'rgba(255, 26, 104, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(0, 0, 0, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 26, 104, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(0, 0, 0, 1)'
+        ],
+        borderWidth: 3
+      }]
     };
-    
-        // setup 
-        const datardr = {
-          labels: ['prayag', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          datasets: [{
-            label: 'Weekly Sales',
-            data: [18, 12, 6, 9, 12, 3, 9],
-            backgroundColor: [
-              'rgba(255, 26, 104, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-              'rgba(0, 0, 0, 0.2)'
-            ],
-            borderColor: [
-              'rgba(255, 26, 104, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-              'rgba(0, 0, 0, 1)'
-            ],
-            borderWidth: 1
-          }]
-        };
-        
-        // config 
-        const configrdr = {
-          type: 'radar',
-          data: datardr
-        }; 
+
+    // config 
+    const configrdr = {
+      type: 'radar',
+      data: datardr,
+      options: {
+
+        legend: {
+          display: false
+
+        },
+      }
+    };
 
     var scatterChartCanvas = $("#scatterChart").get(0).getContext("2d");
     // var scatterChart = new Chart(scatterChartCanvas, {
@@ -1059,9 +1179,9 @@ $(function () {
     //   data: scatterChartData,
     //   options: scatterChartOptions
     // });
-    const scatterChart = new Chart(scatterChartCanvas,configrdr
-      )
-  
+    const scatterChart = new Chart(scatterChartCanvas, configrdr
+    )
+
   }
 
   if ($("#scatterChartDark").length) {
